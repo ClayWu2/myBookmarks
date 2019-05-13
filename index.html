@@ -10,8 +10,7 @@
 <body>
     <header></header>
     <main>
-        <div class="wrapper" id="mainXXXXX">
-
+        <div class="wrapper" id="main">
         </div>
     </main>
     <footer></footer>
@@ -22,18 +21,18 @@
             '2': ['z','x','c','v','b','n','m'],
             'length':3    
         }
-        hash = {'q': 'qq.com', 
+        hash = {    'q': 'www.qq.com',  
                     'w': 'weibo.com',
                     'e': 'ele.me',
-                    'r': 'renren.com', 
+                    'r': 'www.people.com.cn', 
                     't': 'tianya.com', 
                     'y': 'youtube.com', 
-                    'u': 'uc.com', 
-                    'i': 'iqiyi.com', 
+                    'u': 'www.ui.cn', 
+                    'i': 'www.iqiyi.com', 
                     'o': 'opera.com', 
                     'p': undefined, 
                     'a': 'acfun.tv', 
-                    's': 'sohu.com', 
+                    's': 'sogou.com', 
                     'z': 'zhihu.com', 
                     'm': 'www.mcdonalds.com.cn'
         }
@@ -46,18 +45,32 @@
         //遍历keys,生成kbd标签；
         index=0;
         while (index<keys['length']){       //index的取值为0，1，2
-            divXXXXX= document.createElement('div');
-            mainXXXXX.appendChild(divXXXXX);
+            div= document.createElement('div');
+            div.className='row'
+            main.appendChild(div);
             row=keys[index]     //第一个数组  第二个数组  第三个数组
             index2=0;
             while (index2 <row['length']){      //0-9 0-8 0-6
-                kbdXXXXX=document.createElement('kbd');
-                kbdXXXXX.textContent=row[index2];
-                buttonX=document.createElement('button')
-                buttonX.textContent='编辑';
+                kbd=document.createElement('kbd');
+                
 
-                buttonX.id=row[index2]
-                buttonX.onclick=function(xzkjcnxlkcjlk){
+                span=document.createElement('span');
+                span.textContent=row[index2];
+                kbd.appendChild(span);
+                span.className="text:"
+                
+                kbd.className='key'
+                button=document.createElement('button')
+                button.textContent='编辑';
+                button.id=row[index2]
+                img=document.createElement('img');
+                if (hash[row[index2]]){
+                    img.src='http://'+hash[row[index2]]+'/favicon.ico';
+                }else{
+                    img.src='//i.loli.net/2017/11/10/5a05afbc5e183.png' //自己做了一个白色点
+                }
+             
+                button.onclick=function(xzkjcnxlkcjlk){
                     //(xzkjcnxlkcjlk['target']就是用户点击的元素；
                     key=(xzkjcnxlkcjlk['target']['id']);// q  w  e  r  t
                     x=prompt('给我一个网址');
@@ -67,9 +80,9 @@
 
 
                 }
-
-                kbdXXXXX.appendChild(buttonX);
-                divXXXXX.appendChild(kbdXXXXX);
+                kbd.appendChild(img)
+                kbd.appendChild(button);
+                div.appendChild(kbd);
                 index2=index2+1;
             }
             index=index+1;
